@@ -17,13 +17,9 @@ if (ncol(df) > 50 || nrow(df) > 100) {
   stop("Error: Data frame exceeds 50 columns or 100 rows.")
 }
   
-df[] <- lapply(df, function(x) {
-  if (is.numeric(x)) round(x, 3) else x
-})
-
-markdown_table <- knitr::kable(df, format = "markdown")
+markdown_table <- knitr::kable(df, format = "markdown", digits = 3, align = "c")
 tmp_file <- tempfile(fileext = ".md")
-cat(markdown_table, file = tmp_file)
+cat(markdown_table, sep = "\n", file = tmp_file)
 on.exit(unlink(tmp_file))
 
 tercen::file_to_tercen(tmp_file, filename = "Report_Table.md") %>%
