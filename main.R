@@ -23,16 +23,16 @@ tmp_file1 <- tempfile(fileext = ".csv")
 on.exit(unlink(tmp_file1))
 
 write.csv(df, file = tmp_file1, quote = FALSE, row.names = FALSE)
-df_1 <- tercen::file_to_tercen(tmp_file1, filename = "Report_Table.csv")
+df_1 <- tercen::file_to_tercen(tmp_file1, filename = "Report_Table_Full.csv")
   
 ## Write markdown preview
 
 df_sub <- df %>%
   slice_head(n = 30) %>%
-  select(1:min(ncol(.), 10))
+  select(1:min(ncol(.), 6))
 markdown_table <- knitr::kable(df_sub, format = "markdown", digits = 3, align = "c")
 tmp_file <- tempfile(fileext = ".md")
-cat("Preview (first 10 columns and 30 rows)\nThe full Table can be downloaded below.\n", markdown_table, sep = "\n", file = tmp_file)
+cat("Preview (first 6 columns and 30 rows)\n", markdown_table, sep = "\n", file = tmp_file)
 on.exit(unlink(tmp_file))
 
 tercen::file_to_tercen(tmp_file, filename = "Report_Table.md") %>%
