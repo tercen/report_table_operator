@@ -4,7 +4,7 @@
     "tags": ["reporting"],
     "authors": ["tercen"],
     "urls": ["https://github.com/tercen/report_table_operator"],
-    "container":"ghcr.io/tercen/report_table_operator:0.0.1",
+    "container":"ghcr.io/tercen/report_table_operator:0.1.0",
     "properties": [
         {
             "kind": "DoubleProperty",
